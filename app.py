@@ -8,7 +8,7 @@ from PIL import Image # Used for opening image files from Streamlit uploader
 # --- Configuration ---
 # Path to your trained Keras model file
 # IMPORTANT: Ensure 'pneumonia_model.h5' is in the same directory as this Streamlit script
-MODEL_PATH = "pneumonia_model_1.keras" 
+MODEL_PATH = "pneumonia_model.keras"
 
 # Define image size (must match the input size of your model)
 IMG_HEIGHT, IMG_WIDTH = 150, 150
@@ -64,9 +64,11 @@ def predict_and_display_image(uploaded_file, model_instance):
         # Open the image file using PIL
         img = Image.open(uploaded_file)
         
+        # IMPORTANT FIX: Convert image to RGB to ensure 3 channels
+        # This resolves the 'expected 3 but got 1 channel' error
+        img = img.convert('RGB') 
+        
         # Resize and convert to array for model input
-        # Note: image.load_img directly works with file paths, so we convert PIL Image to array
-        # and then resize using PIL for consistency with target_size
         img = img.resize((IMG_WIDTH, IMG_HEIGHT))
         img_array = image.img_to_array(img)
         
