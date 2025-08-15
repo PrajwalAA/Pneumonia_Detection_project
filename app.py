@@ -8,7 +8,7 @@ from PIL import Image # Used for opening image files from Streamlit uploader
 # --- Configuration ---
 # Path to your trained Keras model file
 # IMPORTANT: Ensure 'pneumonia_model.h5' is in the same directory as this Streamlit script
-MODEL_PATH = "pneumonia_model.h5" 
+MODEL_PATH = "pneumonia_model.keras" 
 
 # Define image size (must match the input size of your model)
 IMG_HEIGHT, IMG_WIDTH = 150, 150
